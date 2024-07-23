@@ -5,23 +5,32 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Clicker Game</title>
+        <link rel="stylesheet" href="style.css">
     </head>
     <body>
-        <h3 class="mcounter">Money:0$</h3>
-        <h4 class="mamount">Multipilier:1x</h4>
-        <h4 class="aamount">Adder:1</h4>
-        <button onclick="OnBtnClick()">Clink</button>
-        <h5></h5>
+        <h3 id="mcounter">Money:0$</h3>
+        <h4 id="mamount">Multipilier:1x</h4>
+        <h4 id="aamount">Adder:1</h4>
+        <button onclick="OnBtnClick()" type="button">Clink</button>
+        <h4></h4>
         <nav>
             <label>Click Upgrades</label>
+            <h5></h5>
             <li><label>Addition +=</label></li>
-            <li><button class="upadd1" onclick="UpgradeAdder1()">Upgrade Adder 5$</button></li>
-            <li><button class="upadd2" onclick="UpgradeAdder2()">Upgrade Adder 5$</button></li>
-            <li><button class="upadd3" onclick="UpgradeAdder3()">Upgrade Adder 5$</button></li>
+            <li><button data-updname="Upgrade Adder" data-coste="1.0" data-costm="1.5" data-cost="5" data-updlevel="1" id="upadd1" class="upgrade" onclick="UpdUpgrade(this)" type="button">Upgrade Adder 5$  Level:1</button></li>
+            <li><button data-updname="Upgrade Adder" data-coste="1.0" data-costm="1.5" data-cost="5" data-updlevel="1" id="upadd2" class="upgrade" onclick="UpdUpgrade(this)" type="button">Upgrade Adder 5$  Level:1</button></li>
+            <li><button data-updname="Upgrade Adder" data-coste="1.0" data-costm="1.5" data-cost="5" data-updlevel="1" id="upadd3" class="upgrade" onclick="UpdUpgrade(this)" type="button">Upgrade Adder 5$</button></li>
+            <h5></h5>
             <li><label>Multipilier *=</label></li>
-            <li><button class="upmul1" onclick="UpgradeMult1()">Upgrade Multipilier 15$</button></li>
-            <li><button class="upmul2" onclick="UpgradeMult2()">Upgrade Multipilier 15$</button></li>
-            <li><button class="upmul3" onclick="UpgradeMult3()">Upgrade Multipilier 15$</button></li>
+            <li><button data-updname="Upgrade Multipilier" data-coste="1.0" data-costm="3.0" data-cost="15" data-updlevel="1" id="upmul1" class="upgrade" onclick="UpdUpgrade(this)" type="button">Upgrade Multipilier 15$  Level:1</button></li>
+            <li><button data-updname="Upgrade Multipilier" data-coste="1.0" data-costm="3.0" data-cost="15" data-updlevel="1" id="upmul2" class="upgrade" onclick="UpdUpgrade(this)" type="button">Upgrade Multipilier 15$  Level:1</button></li>
+            <li><button data-updname="Upgrade Multipilier" data-coste="1.0" data-costm="3.0" data-cost="15" data-updlevel="1" id="upmul3" class="upgrade" onclick="UpdUpgrade(this)" type="button">Upgrade Multipilier 15$  Level:1</button></li>
+            <h5></h5>
+            <li><label>[Basic] Auto Upgrades</label></li>
+            <li><button data-updname="Upgrade Auto Adder" data-coste="1.0" data-costm="3.0" data-cost="199" data-updlevel="1" id="upautadd1" class="upgrade" onclick="UpdUpgrade(this)" type="button">Upgrade Auto Adder $199  Level:1</button></li>
+            <li><button data-updname="Upgrade Auto Adder" data-coste="1.0" data-costm="3.0" data-cost="199" data-updlevel="1" id="upautadd2" class="upgrade" onclick="UpdUpgrade(this)" type="button">Upgrade Auto Adder $199  Level:1</button></li>
+            <li><button data-updname="Upgrade Auto Adder" data-coste="1.0" data-costm="3.0" data-cost="199" data-updlevel="1" id="upautadd3" class="upgrade" onclick="UpdUpgrade(this)" type="button">Upgrade Auto Adder $199  Level:1</button></li>
         </nav>
     </body>
+    <script src="script.js"></script>
 </html>
