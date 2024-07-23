@@ -41,6 +41,6 @@ function UpdUpgrade(upgrade) {
     _score -= parseInt(upgrade.getAttribute("data-cost"),10);
     upgrade.setAttribute("data-cost", Exponent(parseInt(upgrade.getAttribute("data-cost"),10) * parseFloat(upgrade.getAttribute("data-costm"),parseFloat(upgrade.getAttribute("data-coste"),10)),10));
     upgrade.textContent = upgrade.getAttribute("data-updname") + " $" + upgrade.getAttribute("data-cost") + "  Level:" + upgrade.getAttribute("data-updlevel");
-    upgrade.setAttribute("data-updlevel") += 1;
+    upgrade.setAttribute("data-updlevel") = parseInt(upgrade.getAttribute("data-updlevel"),10) + 1;
   }
 }
