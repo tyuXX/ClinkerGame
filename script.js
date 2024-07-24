@@ -1,5 +1,5 @@
 var _score = 0;
-
+var _maxupd = false;
 var _globtimer = setInterval(UpdateTick, 25);
 
 function UpdateTick() {
@@ -39,7 +39,7 @@ function GetMoney() {
 function UpdUpgrade(upgrade) {
   if(_score >= parseInt(upgrade.getAttribute("data-cost"),10)) {
     _score -= parseInt(upgrade.getAttribute("data-cost"),10);
-    upgrade.setAttribute("data-cost", Exponent(parseInt(upgrade.getAttribute("data-cost"),10) * parseFloat(upgrade.getAttribute("data-costm"),parseFloat(upgrade.getAttribute("data-coste"),10)),10));
+    upgrade.setAttribute("data-cost", Exponent(parseInt(upgrade.getAttribute("data-cost"),10) * parseFloat(upgrade.getAttribute("data-costm"),10),parseFloat(upgrade.getAttribute("data-coste"),10)));
     upgrade.textContent = upgrade.getAttribute("data-updname") + " $" + upgrade.getAttribute("data-cost") + "  Level:" + upgrade.getAttribute("data-updlevel");
     upgrade.setAttribute("data-updlevel") = parseInt(upgrade.getAttribute("data-updlevel"),10) + 1;
   }
