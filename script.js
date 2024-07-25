@@ -2,7 +2,7 @@ ApiTickConnector.push(UpdateTick);
 
 function UpdateTick() {
   UpdScreen();
-  AddMoney(GetLvLOfSameType("autobasic"));
+  AddMoney(GetLvLOfSameType("autobasic") * GetLvLOfSameType("automultbasic"));
 }
 
 function UpdScreen(){

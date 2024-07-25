@@ -8,3 +8,11 @@ button:hover {
   background: linear-gradient(to right, #c7c7c7, #c5c5c5);
 }
 
+#reset {
+  background: linear-gradient(to right, #ff0000, #b40000);
+  width: 100px;
+  height: 25px;
+}
+#resetlabel{
+  color: red;
+}

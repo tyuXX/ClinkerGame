@@ -5,7 +5,10 @@ var MaxBuy = false;
 
 //Game variables
 var _score = parseInt(localStorage.getItem("_score"), 10) || 0;
-var lifetimestats = JSON.parse(localStorage.getItem("lifetimestats")) || {"clicks":"","":""};
+var lifetimestats = JSON.parse(localStorage.getItem("lifetimestats")) || {
+  clicks: "",
+  "": "",
+};
 
 //Api variables
 var ApiTickConnector = [
@@ -48,7 +51,7 @@ function TryLoad() {
 }
 
 function UpdUpgrade(upgrade) {
-  if (_score >= parseInt(upgrade.getAttribute("data-cost"), 10)) {
+  while(_score > parseInt(upgrade.getAttribute("data-cost"), 10)) {
     _score -= parseInt(upgrade.getAttribute("data-cost"), 10);
     upgrade.setAttribute(
       "data-cost",
@@ -77,6 +80,9 @@ function UpdUpgrade(upgrade) {
       cost: parseFloat(upgrade.getAttribute("data-cost")),
     };
     localStorage.setItem("saveData", JSON.stringify(saveData));
+    if(!MaxBuy){
+      return;
+    }
   }
 }
 
@@ -123,7 +129,7 @@ function FillBar(barId, inte) {
   fillBar.style.width =
     (parseInt(bar.getAttribute("data-width"), 10) * fillPercentage) / 100 +
     "px";
-    
+
   return overflowCount;
 }
 
@@ -135,9 +141,7 @@ function Exponent(number, exponent) {
   return rt;
 }
 
-function UpdateStats(stat, value){
-  
-}
+function UpdateStats(stat, value) {}
 
 setInterval(OnApiTick, 25);
 Setup();
