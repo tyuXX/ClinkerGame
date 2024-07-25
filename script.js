@@ -1,6 +1,7 @@
 var _score = 0;
 var _maxupd = false;
-var _globtimer = setInterval(UpdateTick, 25);
+
+ApiTickConnector.push(UpdateTick);
 
 function UpdateTick() {
   UpdScreen();
@@ -8,8 +9,8 @@ function UpdateTick() {
 
 function UpdScreen(){
     document.getElementById("mcounter").textContent = "Money: $" + _score;
-    document.getElementById("mamount").textContent = "Multiplier: $" + GetMult();
-    document.getElementById("aamount").textContent = "Addition: $" + GetAdd();
+    document.getElementById("mamount").textContent = "Multiplier: X" + GetLvLOfSameType("multbasic");
+    document.getElementById("aamount").textContent = "Addition: +" + GetLvLOfSameType("adderbasic");
 }
 
 function Exponent(number, exponent) {
@@ -24,23 +25,12 @@ function OnBtnClick() {
   _score += GetMoney();
 }
 
-function GetMult() {
-  return parseInt(document.getElementById("upmul1").getAttribute("data-updlevel"),10) * parseInt(document.getElementById("upmul2").getAttribute("data-updlevel"),10) * parseInt(document.getElementById("upmul3").getAttribute("data-updlevel"),10);
-}
-
-function GetAdd() {
-  return parseInt(document.getElementById("upadd1").getAttribute("data-updlevel"),10) + parseInt(document.getElementById("upadd2").getAttribute("data-updlevel"),10) + parseInt(document.getElementById("upadd3").getAttribute("data-updlevel"),10);
+function GetAutoAdd(){
+  return parseInt(document.getElementById("upautadd1").getAttribute("data-updlevel"),10) + parseInt(document.getElementById("upautadd2").getAttribute("data-updlevel"),10) + parseInt(document.getElementById("upautadd3").getAttribute("data-updlevel"),10);
 }
 
 function GetMoney() {
-  return GetAdd() * GetMult();
+  return GetLvLOfSameType("adderbasic") * GetLvLOfSameType("multbasic");
 }
 
-function UpdUpgrade(upgrade) {
-  if(_score >= parseInt(upgrade.getAttribute("data-cost"),10)) {
-    _score -= parseInt(upgrade.getAttribute("data-cost"),10);
-    upgrade.setAttribute("data-cost", Exponent(parseInt(upgrade.getAttribute("data-cost"),10) * parseFloat(upgrade.getAttribute("data-costm"),10),parseFloat(upgrade.getAttribute("data-coste"),10)));
-    upgrade.textContent = upgrade.getAttribute("data-updname") + " $" + upgrade.getAttribute("data-cost") + "  Level:" + upgrade.getAttribute("data-updlevel");
-    upgrade.setAttribute("data-updlevel",parseInt(upgrade.getAttribute("data-updlevel"),10) + 1) ;
-  }
-}
+
