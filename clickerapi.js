@@ -1,12 +1,33 @@
-var ApiTickConnector = [()=>{},()=>{}];
+var ApiTickConnector = [() => {}, () => {}];
 
-var OnApiTick = ()=>{ApiTickConnector.forEach((element) => {
+var OnApiTick = () => {
+  ApiTickConnector.forEach((element) => {
     element();
-});}
+  });
+};
 
+function Reset(){
+  localStorage.clear();
+  location.reload();
+}
 
-function Setup(){
+function Setup() {
+  TryLoad();
+}
 
+function TryLoad() {
+  const saveData = JSON.parse(localStorage.getItem("saveData")) || {};
+
+  for (const upgradeId in saveData) {
+    const upgrade = document.getElementById(upgradeId);
+    if (upgrade) {
+      upgrade.setAttribute("data-updlevel", saveData[upgradeId].level);
+      upgrade.setAttribute("data-cost", saveData[upgradeId].cost);
+      upgrade.textContent = `${upgrade.getAttribute("data-updname")} $${
+        saveData[upgradeId].cost
+      } Level: ${saveData[upgradeId].level}`;
+    }
+  }
 }
 
 function UpdUpgrade(upgrade) {
@@ -20,16 +41,25 @@ function UpdUpgrade(upgrade) {
         parseFloat(upgrade.getAttribute("data-coste"), 10)
       )
     );
+
+    upgrade.setAttribute(
+      "data-updlevel",
+      parseInt(upgrade.getAttribute("data-updlevel"), 10) + 1
+    );
+
     upgrade.textContent =
       upgrade.getAttribute("data-updname") +
       " $" +
       upgrade.getAttribute("data-cost") +
       "  Level:" +
       upgrade.getAttribute("data-updlevel");
-    upgrade.setAttribute(
-      "data-updlevel",
-      parseInt(upgrade.getAttribute("data-updlevel"), 10) + 1
-    );
+
+    const saveData = JSON.parse(localStorage.getItem("saveData")) || {};
+    saveData[upgrade.id] = {
+      level: parseInt(upgrade.getAttribute("data-updlevel"), 10),
+      cost: parseFloat(upgrade.getAttribute("data-cost")),
+    };
+    localStorage.setItem("saveData", JSON.stringify(saveData));
   }
 }
 
@@ -48,10 +78,7 @@ function GetLvLOfSameType(type) {
   return rt;
 }
 
-
-function MovBar(){
-
-}
+function MovBar() {}
 
 function Exponent(number, exponent) {
   let rt = number;
@@ -62,3 +89,4 @@ function Exponent(number, exponent) {
 }
 
 setInterval(OnApiTick, 25);
+Setup();
