@@ -1,9 +1,17 @@
+//Config
+
+//UserConfig
+var MaxBuy = false;
+
+//Game variables
 var _score = parseInt(localStorage.getItem("_score"), 10) || 0;
+var lifetimestats = JSON.parse(localStorage.getItem("lifetimestats")) || {"clicks":"","":""};
+
+//Api variables
 var ApiTickConnector = [
   () => {
     localStorage.setItem("_score", _score);
   },
-  () => {},
 ];
 
 var OnApiTick = () => {
@@ -125,6 +133,10 @@ function Exponent(number, exponent) {
     rt *= number;
   }
   return rt;
+}
+
+function UpdateStats(stat, value){
+  
 }
 
 setInterval(OnApiTick, 25);

@@ -1,9 +1,8 @@
-var _maxupd = false;
-
 ApiTickConnector.push(UpdateTick);
 
 function UpdateTick() {
   UpdScreen();
+  AddMoney(GetLvLOfSameType("autobasic"));
 }
 
 function UpdScreen(){
@@ -21,13 +20,12 @@ function Exponent(number, exponent) {
 }
 
 function OnBtnClick() {
-  _score += GetMoney();
-  FillBar("levelbar",GetMoney());
-  localStorage.setItem("score", _score);
+  AddMoney(GetMoney());
 }
 
-function GetAutoAdd(){
-  return parseInt(document.getElementById("upautadd1").getAttribute("data-updlevel"),10) + parseInt(document.getElementById("upautadd2").getAttribute("data-updlevel"),10) + parseInt(document.getElementById("upautadd3").getAttribute("data-updlevel"),10);
+function AddMoney(inte){
+  _score += inte;
+  FillBar("levelbar",inte);
 }
 
 function GetMoney() {
