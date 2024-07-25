@@ -83,7 +83,7 @@ function GetLvLOfSameType(type) {
 function SetupBar(barid) {
   let bar = document.getElementById(barid);
   const fillBar = document.createElement("div");
-  fillBar.id = "levelbar-fill";
+  fillBar.id = barid + "-fill";
   fillBar.style.height = "100%";
   fillBar.style.backgroundColor = bar.getAttribute("data-fillcolor");
   bar.appendChild(fillBar);
@@ -96,7 +96,7 @@ function SetupBar(barid) {
 
 function FillBar(barId, inte) {
   const bar = document.getElementById(barId);
-  const fillBar = bar.querySelector('#levelbar-fill');
+  const fillBar = bar.firstChild;
 
   // Retrieve current value and max value from data attributes
   const currentValue = parseInt(bar.getAttribute("data-value"), 10);
