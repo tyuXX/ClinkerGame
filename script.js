@@ -11,18 +11,6 @@ function UpdScreen(){
     document.getElementById("aamount").textContent = "Addition: +" + GetLvLOfSameType("adderbasic");
 }
 
-function Exponent(number, exponent) {
-  let rt = number;
-  for (let index = 0; index < exponent - 1; index++) {
-    rt *= number;
-  }
-  return rt;
-}
-
-function OnBtnClick() {
-  AddMoney(GetMoney());
-}
-
 function AddMoney(inte){
   _score += inte;
   FillBar("levelbar",inte);
@@ -33,4 +21,3 @@ function GetMoney() {
 }
 
 SetupBar("levelbar");
-
