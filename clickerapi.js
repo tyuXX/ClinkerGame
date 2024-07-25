@@ -51,14 +51,16 @@ function TryLoad() {
 }
 
 function UpdUpgrade(upgrade) {
-  while(_score > parseInt(upgrade.getAttribute("data-cost"), 10)) {
+  while (_score > parseInt(upgrade.getAttribute("data-cost"), 10)) {
     _score -= parseInt(upgrade.getAttribute("data-cost"), 10);
     upgrade.setAttribute(
       "data-cost",
-      Exponent(
-        parseInt(upgrade.getAttribute("data-cost"), 10) *
-          parseFloat(upgrade.getAttribute("data-costm"), 10),
-        parseFloat(upgrade.getAttribute("data-coste"), 10)
+      Math.ceil(
+        Math.pow(
+          parseInt(upgrade.getAttribute("data-cost"), 10) *
+            parseFloat(upgrade.getAttribute("data-costm"), 10),
+          parseFloat(upgrade.getAttribute("data-coste"), 10)
+        )
       )
     );
 
@@ -80,7 +82,7 @@ function UpdUpgrade(upgrade) {
       cost: parseFloat(upgrade.getAttribute("data-cost")),
     };
     localStorage.setItem("saveData", JSON.stringify(saveData));
-    if(!MaxBuy){
+    if (!MaxBuy) {
       return;
     }
   }
@@ -131,14 +133,6 @@ function FillBar(barId, inte) {
     "px";
 
   return overflowCount;
-}
-
-function Exponent(number, exponent) {
-  let rt = number;
-  for (let index = 0; index < exponent - 1; index++) {
-    rt *= number;
-  }
-  return rt;
 }
 
 function UpdateStats(stat, value) {}
