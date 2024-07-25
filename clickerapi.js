@@ -1,5 +1,10 @@
 var _score = parseInt(localStorage.getItem("_score"), 10) || 0;
-var ApiTickConnector = [() => {localStorage.setItem("_score", _score)}, () => {}];
+var ApiTickConnector = [
+  () => {
+    localStorage.setItem("_score", _score);
+  },
+  () => {},
+];
 
 var OnApiTick = () => {
   ApiTickConnector.forEach((element) => {
@@ -10,7 +15,7 @@ var OnApiTick = () => {
 function Reset() {
   while (ApiTickConnector.length > 0) {
     ApiTickConnector.pop();
-}
+  }
   localStorage.clear();
   location.reload();
 }
@@ -100,29 +105,19 @@ function SetupBar(barid) {
 function FillBar(barId, inte) {
   const bar = document.getElementById(barId);
   const fillBar = bar.firstChild;
-
-  // Retrieve current value and max value from data attributes
   const currentValue = parseInt(bar.getAttribute("data-value"), 10);
   const maxValue = parseInt(bar.getAttribute("data-maxvalue"), 10);
-
-  // Calculate overflow count using integer division
   const overflowCount = Math.floor((currentValue + inte) / maxValue);
-
-  // Calculate new value without overflow
   const newValue = (currentValue + inte) % maxValue;
 
-  // Update data-value attribute
   bar.setAttribute("data-value", newValue);
-
-  // Calculate fill percentage
   const fillPercentage = (newValue / maxValue) * 100;
-
-  // Update fill bar width
-  fillBar.style.width = ((parseInt(bar.getAttribute("data-width"),10) * fillPercentage) / 100) + "px";
-
+  fillBar.style.width =
+    (parseInt(bar.getAttribute("data-width"), 10) * fillPercentage) / 100 +
+    "px";
+    
   return overflowCount;
 }
-
 
 function Exponent(number, exponent) {
   let rt = number;
