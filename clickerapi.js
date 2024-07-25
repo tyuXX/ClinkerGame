@@ -8,7 +8,9 @@ var OnApiTick = () => {
 };
 
 function Reset() {
-  ApiTickConnector.clear();
+  while (ApiTickConnector.length > 0) {
+    ApiTickConnector.pop();
+}
   localStorage.clear();
   location.reload();
 }
@@ -85,6 +87,7 @@ function SetupBar(barid) {
   const fillBar = document.createElement("div");
   fillBar.id = barid + "-fill";
   fillBar.style.height = "100%";
+  fillBar.style.width = "0%";
   fillBar.style.backgroundColor = bar.getAttribute("data-fillcolor");
   bar.appendChild(fillBar);
 
