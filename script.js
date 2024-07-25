@@ -1,4 +1,3 @@
-var _score = 0;
 var _maxupd = false;
 
 ApiTickConnector.push(UpdateTick);
@@ -23,6 +22,8 @@ function Exponent(number, exponent) {
 
 function OnBtnClick() {
   _score += GetMoney();
+  FillBar("levelbar",GetMoney());
+  localStorage.setItem("score", _score);
 }
 
 function GetAutoAdd(){
@@ -33,4 +34,5 @@ function GetMoney() {
   return GetLvLOfSameType("adderbasic") * GetLvLOfSameType("multbasic");
 }
 
+SetupBar("levelbar");
 

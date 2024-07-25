@@ -1,3 +1,4 @@
+var _score = parseInt(localStorage.getItem("_score"), 10) || 0;
 var ApiTickConnector = [() => {}, () => {}];
 
 var OnApiTick = () => {
@@ -6,7 +7,7 @@ var OnApiTick = () => {
   });
 };
 
-function Reset(){
+function Reset() {
   localStorage.clear();
   location.reload();
 }
@@ -78,7 +79,46 @@ function GetLvLOfSameType(type) {
   return rt;
 }
 
-function MovBar() {}
+function SetupBar(barid) {
+  let bar = document.getElementById(barid);
+  const fillBar = document.createElement("div");
+  fillBar.id = "levelbar-fill";
+  fillBar.style.height = "100%";
+  fillBar.style.backgroundColor = bar.getAttribute("data-fillcolor");
+  bar.appendChild(fillBar);
+
+  bar.style.width = bar.getAttribute("data-width");
+  bar.style.height = bar.getAttribute("data-height");
+  bar.style.backgroundColor = bar.getAttribute("data-color");
+  bar.style.borderRadius = bar.getAttribute("data-border");
+}
+
+function FillBar(barId, inte) {
+  const bar = document.getElementById(barId);
+  const fillBar = bar.querySelector('#levelbar-fill');
+
+  // Retrieve current value and max value from data attributes
+  const currentValue = parseInt(bar.getAttribute("data-value"), 10);
+  const maxValue = parseInt(bar.getAttribute("data-maxvalue"), 10);
+
+  // Calculate overflow count using integer division
+  const overflowCount = Math.floor((currentValue + inte) / maxValue);
+
+  // Calculate new value without overflow
+  const newValue = (currentValue + inte) % maxValue;
+
+  // Update data-value attribute
+  bar.setAttribute("data-value", newValue);
+
+  // Calculate fill percentage
+  const fillPercentage = (newValue / maxValue) * 100;
+
+  // Update fill bar width
+  fillBar.style.width = ((parseInt(bar.getAttribute("data-width"),10) * fillPercentage) / 100) + "px";
+
+  return overflowCount;
+}
+
 
 function Exponent(number, exponent) {
   let rt = number;
