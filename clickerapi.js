@@ -1,5 +1,5 @@
 var _score = parseInt(localStorage.getItem("_score"), 10) || 0;
-var ApiTickConnector = [() => {}, () => {}];
+var ApiTickConnector = [() => {localStorage.setItem("_score", _score)}, () => {}];
 
 var OnApiTick = () => {
   ApiTickConnector.forEach((element) => {
@@ -8,6 +8,7 @@ var OnApiTick = () => {
 };
 
 function Reset() {
+  ApiTickConnector.clear();
   localStorage.clear();
   location.reload();
 }
