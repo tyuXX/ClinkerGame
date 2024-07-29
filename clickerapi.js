@@ -4,6 +4,7 @@
 var MaxBuy = false;
 
 //Game variables
+var _ScoreVars = [];
 var _score = parseInt(localStorage.getItem("_score"), 10) || 0;
 var lifetimestats = JSON.parse(localStorage.getItem("lifetimestats")) || {
   clicks: "",
@@ -133,6 +134,10 @@ function FillBar(barId, inte) {
     "px";
 
   return overflowCount;
+}
+
+function AddXp(){
+
 }
 
 function UpdateStats(stat, value) {}
